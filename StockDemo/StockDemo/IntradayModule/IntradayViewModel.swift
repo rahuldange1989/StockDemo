@@ -18,8 +18,15 @@ class IntradayViewModel {
     }
     
     func fetchIntradayTimeSeries(for symbol: String, completion: @escaping (_ message: String) -> ()) {
+        /// minimum length for symbol is 3 characters
+        let symbolWithoutSpaces = symbol.replacingOccurrences(of: " ", with: "")
+        if symbolWithoutSpaces.count < 3 {
+            completion(AppConstants.minimum_symbol_lenth_error_msg)
+            return
+        }
+        
         let apiManager = APIManager()
-        apiManager.getIntradayData(for: symbol) { [weak self] (timeSeriesModel, result) in
+        apiManager.getIntradayData(for: symbolWithoutSpaces.percentageEncoding()) { [weak self] (timeSeriesModel, result) in
             if result == .Success {
                 self?.timeSeriesModelDict = timeSeriesModel?.getTimeSeriesDict() ?? [:]
                 self?.sortedTimeSeriesValues = self?.sortTimeSeriesModelDict(with: SortOptions.dateDescending.rawValueString()) ?? []

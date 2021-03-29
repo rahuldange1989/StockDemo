@@ -19,12 +19,11 @@ class IntradayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         setupUI()
     }
     
-    //MARK: - Internal methods
+    // MARK: - Internal methods
     fileprivate func handleGetInfoBtnUI(enabled: Bool) {
         getInfoBtn.isEnabled = enabled
         getInfoBtn.alpha = enabled ? 1.0 : 0.5
@@ -76,14 +75,20 @@ class IntradayViewController: UIViewController {
         /// hide keyboard when user touches outside it
         view.endEditing(true)
         
+        let symbol = symbolTextField.text ?? ""
+        /// don't call api if symbol is empty
+        if symbol.isEmpty {
+            return
+        }
+        
         Utility.showActivityIndicatory((parent?.view)!)
-        viewModel.fetchIntradayTimeSeries(for: symbolTextField.text ?? "") { [weak self] msg in
+        viewModel.fetchIntradayTimeSeries(for: symbol) { [weak self] msg in
             DispatchQueue.main.async {
                 Utility.hideActivityIndicatory((self?.parent?.view)!)
                 if msg.isEmpty {
                     self?.intradayTableView.reloadData()
                 } else {
-                    Utility.showAlert(self, title: "Error", message: msg)
+                    Utility.showAlert(self, title: "", message: msg)
                 }
                 
                 /// hide or display no data label

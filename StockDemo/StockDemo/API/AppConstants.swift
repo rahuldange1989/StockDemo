@@ -13,7 +13,7 @@ struct AppConstants {
     struct API {
         static var api_key_alpha_vantage = "78TV77XPOXDOJC4Z"
         static var interval = "5min"
-        static var outputsize = "full"
+        static var outputsize = "compact"
         static let server_url = "https://www.alphavantage.co/query?function="
         static let time_series_intraday_url = "TIME_SERIES_INTRADAY&symbol=%@&interval=%@&outputsize=%@&apikey=%@"
         static let time_series_daily_adjusted_url = "TIME_SERIES_DAILY_ADJUSTED&symbol=%@&outputsize=%@&apikey=%@"
@@ -29,4 +29,7 @@ struct AppConstants {
     static let server_error_msg = "Unable to connect to the server.\nPlease try again later."
     static let no_network_error_msg = "You are currently offline. Please connect to internet."
     static let sorting_option_message = "Choose sorting option"
+    static let maximum_symbols_error_message = "Maximum three symbols can be compared at a time"
+    static let minimum_symbol_lenth_error_msg = "Minimum length for symbol is 3 characters"
+    static let duplicate_symbol_error_msg = "Enter differnt symbols to compare"
 }

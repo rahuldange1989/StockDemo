@@ -80,6 +80,30 @@ extension APIManager {
         }
     }
     
+    /// This function downloads Daily data from given Symbol
+    /// with provided interval and API key
+    /// - parameters:
+    ///     - symbol: symbol for which data to be downloaded
+    ///     - completion: completion block which returns `TimeSeriesModel` from API and result of API call
+    ///
+    func getDailyData(for symbol: String, completion: @escaping (_ timeSeriesModel: TimeSeriesModel?, _ result: RequestResult?) -> Void) {
+        let dailyUrl = String(format: AppConstants.API.time_series_daily_adjusted_url,
+                                 symbol,
+                                 AppConstants.API.outputsize,
+                                 AppConstants.API.api_key_alpha_vantage)
+
+        /// API call to get and convert data
+        self.getJSONFromURL(urlString: AppConstants.API.server_url + dailyUrl) { (data, result) in
+            guard let data = data else {
+                print("Failed to get data")
+                return completion(nil, result)
+            }
+            self.createTimeSeriesModel(with: data, completion: { (searchModels, error) in
+                return completion(searchModels, error)
+            })
+        }
+    }
+    
     /// This function converts downloaded data to TimeSeriesModel
     /// - parameters:
     ///     - json: json Data got from API call
