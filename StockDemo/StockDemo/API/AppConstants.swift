@@ -11,10 +11,12 @@ import UIKit
 struct AppConstants {
     
     struct API {
-        static let api_key_alpha_vantage = "78TV77XPOXDOJC4Z"
+        static var api_key_alpha_vantage = "78TV77XPOXDOJC4Z"
+        static var interval = "5min"
+        static var outputsize = "full"
         static let server_url = "https://www.alphavantage.co/query?function="
-        static let time_series_intraday_url = "TIME_SERIES_INTRADAY&symbol=%@&interval=%@&apikey=%@"
-        static let time_series_daily_adjusted_url = "TIME_SERIES_DAILY_ADJUSTED&symbol=%@&apikey=%@"
+        static let time_series_intraday_url = "TIME_SERIES_INTRADAY&symbol=%@&interval=%@&outputsize=%@&apikey=%@"
+        static let time_series_daily_adjusted_url = "TIME_SERIES_DAILY_ADJUSTED&symbol=%@&outputsize=%@&apikey=%@"
     }
 
     static let incoming_intraday_date_format = "YYYY-MM-dd HH:mm:ss"

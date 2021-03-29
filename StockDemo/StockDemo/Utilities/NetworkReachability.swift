@@ -7,9 +7,10 @@
 
 import Network
 
-// -- shared instance
+/// shared instance
 private let _sharedInstance = NetworkReachability.init()
 
+/// This NetworkReachability monitors if internet is available or not
 class NetworkReachability {
     
     var pathMonitor: NWPathMonitor!
@@ -30,6 +31,10 @@ class NetworkReachability {
         pathMonitor.start(queue: backgroudQueue)
     }
     
+    /// This function tells us if internet is available or not
+    /// - returns:
+    ///     boolean value
+    ///
     func isNetworkAvailable() -> Bool {
         if let path = NetworkReachability.sharedInstance.path {
             if path.status == NWPath.Status.satisfied {
