@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9404A4D1261246F3002C2BDF /* DailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404A4D0261246F3002C2BDF /* DailyViewModel.swift */; };
+		9404A4D626127233002C2BDF /* DailyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404A4D526127233002C2BDF /* DailyUITests.swift */; };
 		9475D8F6260D2284003E91F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D8F5260D2284003E91F5 /* AppDelegate.swift */; };
 		9475D8F8260D2284003E91F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D8F7260D2284003E91F5 /* SceneDelegate.swift */; };
 		9475D8FD260D2284003E91F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9475D8FB260D2284003E91F5 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		9404A4D0261246F3002C2BDF /* DailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewModel.swift; sourceTree = "<group>"; };
+		9404A4D526127233002C2BDF /* DailyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUITests.swift; sourceTree = "<group>"; };
 		9475D8F2260D2284003E91F5 /* StockDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9475D8F5260D2284003E91F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9475D8F7260D2284003E91F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				9475D917260D2287003E91F5 /* IntradayUITests.swift */,
+				9404A4D526127233002C2BDF /* DailyUITests.swift */,
 				9475D919260D2287003E91F5 /* Info.plist */,
 			);
 			path = StockDemoUITests;
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94FCE888261217F2001BB8A2 /* IntradayUITests.swift in Sources */,
+				9404A4D626127233002C2BDF /* DailyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

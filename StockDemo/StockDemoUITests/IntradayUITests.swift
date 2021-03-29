@@ -62,6 +62,19 @@ class IntradayUITests: XCTestCase {
         XCTAssert(infoBtn!.isEnabled, "Get Info button should be enabled")
     }
     
+    func testMinimumSymbolLength() {
+        app?.launch()
+        let symbolField = app?.textFields["symbol-field"]
+        symbolField!.tap()
+        symbolField!.typeText("AB")
+
+        let infoBtn = app?.buttons["info-button"]
+        infoBtn?.tap()
+
+        let alert = app?.alerts["common-alert"]
+        XCTAssert(alert!.exists, "Minimum symbol length failed.")
+    }
+    
     func testIfActivityIndicatorPresent() {
         app?.launch()
         let symbolField = app?.textFields["symbol-field"]
