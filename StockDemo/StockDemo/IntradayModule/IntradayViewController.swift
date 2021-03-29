@@ -15,17 +15,15 @@ class IntradayViewController: UIViewController {
     @IBOutlet weak var symbolTextField: UITextField!
     
     fileprivate let viewModel = IntradayViewModel()
+    private var sortOptionsSheet: UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupUI()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /// hide keyboard when user touches outside it
-        view.endEditing(true)
+        /// add delegate to viewModel for uodating tableview
+        viewModel.delegate = self
     }
     
     //MARK: - Internal methods
@@ -40,26 +38,52 @@ class IntradayViewController: UIViewController {
         /// add left view to symbolTextField
         symbolTextField.leftViewMode = .always
         symbolTextField.leftView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 20))
+        /// create sort options actionsheet
+        sortOptionsSheet = UIAlertController(title: "", message: AppConstants.sorting_option_message, preferredStyle: .actionSheet)
+        sortOptionsSheet?.view.tintColor = AppConstants.theme_color
+        /// add different sorting options
+        let actions = self.createSortActions(with: [.dateAscending, .dateDescending, .highAscending, .highDescending, .lowAscending, .lowDescending, .openAscending, .openDescending])
+        for action in actions {
+            sortOptionsSheet?.addAction(action)
+        }
+    }
+    
+    private func createSortActions(with actionArray: [SortOptions]) -> [UIAlertAction] {
+        var alertActions: [UIAlertAction] = []
+        for option in actionArray {
+            let action = UIAlertAction.init(title: option.rawValueString(), style: .default) { [weak self] (action) in
+                // -- add sort action handler code
+                self?.viewModel.sortTimeSeriesModelDict(with: action.title ?? "")
+            }
+            alertActions.append(action)
+        }
+        // -- add cancel action
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        alertActions.append(cancelAction)
+        return alertActions
     }
     
     //MARK: - Event handler methods
     @IBAction func sortBtnClicked(_ sender: Any) {
-    
+        /// present action sheet
+        guard let sortOptionsSheet = sortOptionsSheet else { return }
+        present(sortOptionsSheet, animated: false, completion: nil)
     }
     
     @IBAction func getInfoBtnClicked(_ sender: Any) {
+        /// hide keyboard when user touches outside it
+        view.endEditing(true)
+        
         Utility.showActivityIndicatory((parent?.view)!)
         viewModel.fetchIntradayTimeSeries(for: symbolTextField.text ?? "") { [weak self] msg in
             DispatchQueue.main.async {
                 Utility.hideActivityIndicatory((self?.parent?.view)!)
-                if msg.isEmpty {
-                    self?.intradayTableView.reloadData()
-                } else {
+                if !msg.isEmpty {
                     Utility.showAlert(self, title: "Error", message: msg)
                 }
                 
                 /// hide or display no data label
-                if !(self?.viewModel.getSortedKeys().isEmpty ?? true) {
+                if !(self?.viewModel.getSortedTimeSeriesList().isEmpty ?? true) {
                     self?.noDataLabel.isHidden = true
                     /// scrolling tableview to top after some time as reloadData is in progress.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -90,12 +114,17 @@ extension IntradayViewController: UITextFieldDelegate {
         handleGetInfoBtnUI(enabled: updatedText.count > 0)
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        getInfoBtnClicked(getInfoBtn ?? UIButton())
+        return true
+    }
 }
 
 /// Extension for UITableViewDatasource methods
 extension IntradayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getSortedKeys().count
+        return viewModel.getSortedTimeSeriesList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,11 +135,19 @@ extension IntradayViewController: UITableViewDataSource {
             cell = UITableViewCell(style: .default, reuseIdentifier: "IntradayTableViewCell") as? IntradayTableViewCell
         }
         
-        /// get current key i.e. date string
-        let currentKey = viewModel.getSortedKeys()[indexPath.row]
-        let currentInfoModel = viewModel.getTimeSeriesModelDict()[currentKey]
-        cell?.setData(key: currentKey, value: currentInfoModel)
+        /// get current timeseries
+        let currentTimeSeries = viewModel.getSortedTimeSeriesList()[indexPath.row]
+        cell?.setData(timeSeries: currentTimeSeries)
         
         return cell!
+    }
+}
+
+/// Extension for updating IntraDayList tableview
+extension IntradayViewController: IntraDayListUpdateDelegate {
+    func updateIntradayTimeSeriesList(list: [(key: String, value: EquityInfoModel)]) {
+        DispatchQueue.main.async {
+            self.intradayTableView.reloadData()
+        }
     }
 }

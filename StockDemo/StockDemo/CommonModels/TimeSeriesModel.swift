@@ -5,12 +5,29 @@
 //  Created by Rahul Dange on 29/03/21.
 //
 
+/// available time intervals
 enum TimeInterval: String {
     case oneMin = "1min"
     case fiveMin = "5min"
     case fifteenMin = "15min"
     case thirtyMin = "30min"
     case sixtyMin = "60min"
+}
+
+/// available sort options
+enum SortOptions: String {
+    case openDescending = "Open (descending)"
+    case openAscending = "Open (ascending)"
+    case highDescending = "High (descending)"
+    case highAscending = "High (ascending)"
+    case lowDescending = "Low (descending)"
+    case lowAscending = "Low (ascending)"
+    case dateDescending = "Date (descending)"
+    case dateAscending = "Date (ascending)"
+    
+    func rawValueString() -> String {
+        return self.rawValue
+    }
 }
 
 // MARK: - TimeSeriesModel

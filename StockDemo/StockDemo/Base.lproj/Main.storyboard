@@ -211,13 +211,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="128.5" height="60"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfV-m9-tGV">
-                                                                    <rect key="frame" x="7" y="30" width="0.0" height="0.0"/>
+                                                                    <rect key="frame" x="7" y="30" width="114.5" height="0.0"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="WfV-m9-tGV" secondAttribute="trailing" constant="7" id="1Nb-5Z-5WS"/>
                                                                 <constraint firstItem="WfV-m9-tGV" firstAttribute="leading" secondItem="hTz-eH-TYz" secondAttribute="leading" constant="7" id="67F-Ou-hhV"/>
                                                                 <constraint firstItem="WfV-m9-tGV" firstAttribute="centerY" secondItem="hTz-eH-TYz" secondAttribute="centerY" id="eME-ga-GBN"/>
                                                             </constraints>
