@@ -10,10 +10,23 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // -- Initialize Network Manager Reachability
+        NetworkReachability.sharedInstance.initialize()
+        
+        // -- Change appearance of Navigation bar
+        UINavigationBar.appearance().barTintColor = AppConstants.theme_color
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().isTranslucent = false
+        
+        // -- Change appearance of tabbar
+        UITabBar.appearance().barTintColor = AppConstants.theme_color
+        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().isTranslucent = false
+        
         return true
     }
 
