@@ -13,7 +13,6 @@
 		9475D8FF260D2287003E91F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9475D8FE260D2287003E91F5 /* Assets.xcassets */; };
 		9475D902260D2287003E91F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9475D900260D2287003E91F5 /* LaunchScreen.storyboard */; };
 		9475D90D260D2287003E91F5 /* UtilityUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D90C260D2287003E91F5 /* UtilityUnitTests.swift */; };
-		9475D918260D2287003E91F5 /* StockDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D917260D2287003E91F5 /* StockDemoUITests.swift */; };
 		9475D9322610AD1C003E91F5 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D9312610AD1C003E91F5 /* NetworkReachability.swift */; };
 		9475D93A2610AD5D003E91F5 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D9392610AD5D003E91F5 /* Utility.swift */; };
 		9475D9402610B19D003E91F5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D93F2610B19D003E91F5 /* AppConstants.swift */; };
@@ -26,6 +25,7 @@
 		9475D9892611A93D003E91F5 /* IntradayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D9882611A93D003E91F5 /* IntradayViewModel.swift */; };
 		94FCE8732612085C001BB8A2 /* IntradaySample.json in Resources */ = {isa = PBXBuildFile; fileRef = 94FCE8722612085C001BB8A2 /* IntradaySample.json */; };
 		94FCE878261208FA001BB8A2 /* IntradayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FCE877261208FA001BB8A2 /* IntradayViewModelTests.swift */; };
+		94FCE888261217F2001BB8A2 /* IntradayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D917260D2287003E91F5 /* IntradayUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		9475D90C260D2287003E91F5 /* UtilityUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityUnitTests.swift; sourceTree = "<group>"; };
 		9475D90E260D2287003E91F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9475D913260D2287003E91F5 /* StockDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9475D917260D2287003E91F5 /* StockDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDemoUITests.swift; sourceTree = "<group>"; };
+		9475D917260D2287003E91F5 /* IntradayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayUITests.swift; sourceTree = "<group>"; };
 		9475D919260D2287003E91F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9475D9312610AD1C003E91F5 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		9475D9392610AD5D003E91F5 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		9475D916260D2287003E91F5 /* StockDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9475D917260D2287003E91F5 /* StockDemoUITests.swift */,
+				9475D917260D2287003E91F5 /* IntradayUITests.swift */,
 				9475D919260D2287003E91F5 /* Info.plist */,
 			);
 			path = StockDemoUITests;
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9475D918260D2287003E91F5 /* StockDemoUITests.swift in Sources */,
+				94FCE888261217F2001BB8A2 /* IntradayUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

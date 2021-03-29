@@ -33,6 +33,7 @@ class IntradayViewController: UIViewController {
     private func setupUI() {
         /// to hide extra lines
         intradayTableView.tableFooterView = UIView()
+        intradayTableView.accessibilityIdentifier = "intraday-tableview"
         /// add left view to symbolTextField
         symbolTextField.leftViewMode = .always
         symbolTextField.leftView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 20))
