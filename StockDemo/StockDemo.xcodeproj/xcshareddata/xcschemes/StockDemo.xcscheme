@@ -37,6 +37,11 @@
                BlueprintName = "StockDemoTests"
                ReferencedContainer = "container:StockDemo.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "IntradayViewModelTests/testIntradayAPI()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

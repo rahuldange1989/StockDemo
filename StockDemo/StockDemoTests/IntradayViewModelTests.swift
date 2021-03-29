@@ -27,6 +27,7 @@ class IntradayViewModelTests: XCTestCase {
         XCTAssertNotNil(timeSeriesModel, "Failed to initialize TimeSeriesModel")
     }
     
+    /// disabling this test as Travis CI job - workstation don't have internet connection
     func testIntradayAPI() {
         let apiExpectation = expectation(description: "Intraday API testing.")
         viewModel?.fetchIntradayTimeSeries(for: "IBM") { msg in
