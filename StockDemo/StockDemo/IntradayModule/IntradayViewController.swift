@@ -14,6 +14,8 @@ class IntradayViewController: UIViewController {
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var symbolTextField: UITextField!
     
+    fileprivate let viewModel = IntradayViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +48,28 @@ class IntradayViewController: UIViewController {
     }
     
     @IBAction func getInfoBtnClicked(_ sender: Any) {
+        Utility.showActivityIndicatory((parent?.view)!)
+        viewModel.fetchIntradayTimeSeries(for: symbolTextField.text ?? "") { [weak self] msg in
+            DispatchQueue.main.async {
+                Utility.hideActivityIndicatory((self?.parent?.view)!)
+                if msg.isEmpty {
+                    self?.intradayTableView.reloadData()
+                } else {
+                    Utility.showAlert(self, title: "Error", message: msg)
+                }
+                
+                /// hide or display no data label
+                if !(self?.viewModel.getSortedKeys().isEmpty ?? true) {
+                    self?.noDataLabel.isHidden = true
+                    /// scrolling tableview to top after some time as reloadData is in progress.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self?.intradayTableView.setContentOffset(.zero, animated: false)
+                    }
+                } else {
+                    self?.noDataLabel.isHidden = false
+                }
+            }
+        }
     }
 }
 
@@ -71,7 +95,7 @@ extension IntradayViewController: UITextFieldDelegate {
 /// Extension for UITableViewDatasource methods
 extension IntradayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.getSortedKeys().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,6 +105,11 @@ extension IntradayViewController: UITableViewDataSource {
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: "IntradayTableViewCell") as? IntradayTableViewCell
         }
+        
+        /// get current key i.e. date string
+        let currentKey = viewModel.getSortedKeys()[indexPath.row]
+        let currentInfoModel = viewModel.getTimeSeriesModelDict()[currentKey]
+        cell?.setData(key: currentKey, value: currentInfoModel)
         
         return cell!
     }

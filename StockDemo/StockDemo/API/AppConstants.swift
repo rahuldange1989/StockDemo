@@ -27,5 +27,5 @@ struct AppConstants {
     
     // -- Constant String Messages
     static let server_error_msg = "Unable to connect to the server.\nPlease try again later."
-    static let no_network_error_MSG = "You are currently offline. Please connect to internet."
+    static let no_network_error_msg = "You are currently offline. Please connect to internet."
 }

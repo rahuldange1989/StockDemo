@@ -10,10 +10,11 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // -- Initialize Network Manager Reachability
+        NetworkReachability.sharedInstance.initialize()
         
         // -- Change appearance of Navigation bar
         UINavigationBar.appearance().barTintColor = AppConstants.theme_color

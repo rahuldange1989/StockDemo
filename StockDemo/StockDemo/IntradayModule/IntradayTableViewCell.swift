@@ -25,4 +25,11 @@ class IntradayTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setData(key dateTime: String, value: EquityInfoModel?) {
+        guard let infoModel = value else { return }
+        openLabel.text = infoModel.open
+        lowLabel.text = infoModel.low
+        highLabel.text = infoModel.high
+        dateTimeLabel.text = Utility.getDateStringFrom(dateString: dateTime)
+    }
 }

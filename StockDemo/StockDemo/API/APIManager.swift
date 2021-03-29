@@ -91,7 +91,7 @@ extension APIManager {
             let timeSeriesModel = try decoder.decode(TimeSeriesModel.self, from: json)
             return completion(timeSeriesModel, .Success)
         } catch let error {
-            print(">>> Error creating time series model from JSON. \(error.localizedDescription)")
+            print("Error creating time series model from JSON. \(error.localizedDescription)")
             return completion(nil, .DataError)
         }
     }

@@ -23,6 +23,7 @@
 		9475D97026117E63003E91F5 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D96F26117E63003E91F5 /* TimeSeriesModel.swift */; };
 		9475D97C261180A1003E91F5 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D97B261180A1003E91F5 /* APIManager.swift */; };
 		9475D984261199FC003E91F5 /* IntradayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D983261199FC003E91F5 /* IntradayTableViewCell.swift */; };
+		9475D9892611A93D003E91F5 /* IntradayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9475D9882611A93D003E91F5 /* IntradayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		9475D96F26117E63003E91F5 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
 		9475D97B261180A1003E91F5 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9475D983261199FC003E91F5 /* IntradayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayTableViewCell.swift; sourceTree = "<group>"; };
+		9475D9882611A93D003E91F5 /* IntradayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntradayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				9475D9532610BD62003E91F5 /* IntradayViewController.swift */,
+				9475D9882611A93D003E91F5 /* IntradayViewModel.swift */,
 				9475D983261199FC003E91F5 /* IntradayTableViewCell.swift */,
 			);
 			path = IntradayModule;
@@ -332,6 +335,7 @@
 			files = (
 				9475D984261199FC003E91F5 /* IntradayTableViewCell.swift in Sources */,
 				9475D97026117E63003E91F5 /* TimeSeriesModel.swift in Sources */,
+				9475D9892611A93D003E91F5 /* IntradayViewModel.swift in Sources */,
 				9475D9592610BD77003E91F5 /* DailyViewController.swift in Sources */,
 				9475D97C261180A1003E91F5 /* APIManager.swift in Sources */,
 				9475D9542610BD62003E91F5 /* IntradayViewController.swift in Sources */,
