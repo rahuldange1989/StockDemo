@@ -41,6 +41,9 @@
                <Test
                   Identifier = "IntradayViewModelTests/testIntradayAPI()">
                </Test>
+               <Test
+                  Identifier = "UtilityUnitTests/testNeworkReachability()">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference

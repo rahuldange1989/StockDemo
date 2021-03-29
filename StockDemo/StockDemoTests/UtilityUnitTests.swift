@@ -32,6 +32,7 @@ class UtilityUnitTests: XCTestCase {
         XCTAssertEqual(requiredDateString, "24/03/2021", "Dates not equal for Daily")
     }
     
+    /// disabled networkReachability test as Travis CI workstation issue.
     func testNeworkReachability() {
         NetworkReachability.sharedInstance.initialize()
         XCTAssertNotNil(NetworkReachability.sharedInstance, "Failed to initialize network reachability")
