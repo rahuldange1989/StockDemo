@@ -31,4 +31,10 @@ class UtilityUnitTests: XCTestCase {
         
         XCTAssertEqual(requiredDateString, "24/03/2021", "Dates not equal for Daily")
     }
+    
+    func testNeworkReachability() {
+        NetworkReachability.sharedInstance.initialize()
+        XCTAssertNotNil(NetworkReachability.sharedInstance, "Failed to initialize network reachability")
+        XCTAssertTrue(NetworkReachability.sharedInstance.isNetworkAvailable())
+    }
 }

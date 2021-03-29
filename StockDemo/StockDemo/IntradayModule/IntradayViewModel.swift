@@ -5,16 +5,11 @@
 //  Created by Rahul Dange on 29/03/21.
 //
 
-protocol IntraDayListUpdateDelegate {
-    func updateIntradayTimeSeriesList(list: [(key: String, value: EquityInfoModel)])
-}
-
 class IntradayViewModel {
     
     private var timeSeriesModelDict: [String: EquityInfoModel] = [:]
     private var sortedTimeSeriesValues: [(key: String, value: EquityInfoModel)] = []
 
-    var delegate: IntraDayListUpdateDelegate? = nil
     typealias SortDescriptor<Value> = (Value, Value) -> Bool
     
     // MARK: - internal Methods -
@@ -27,7 +22,7 @@ class IntradayViewModel {
         apiManager.getIntradayData(for: symbol) { [weak self] (timeSeriesModel, result) in
             if result == .Success {
                 self?.timeSeriesModelDict = timeSeriesModel?.getTimeSeriesDict() ?? [:]
-                self?.sortTimeSeriesModelDict(with: SortOptions.dateDescending.rawValueString())
+                self?.sortedTimeSeriesValues = self?.sortTimeSeriesModelDict(with: SortOptions.dateDescending.rawValueString()) ?? []
                 completion("")
             } else if result == .NoInternet {
                 completion(AppConstants.no_network_error_msg)
@@ -37,15 +32,16 @@ class IntradayViewModel {
         }
     }
     
-    func sortTimeSeriesModelDict(with option: String) {
+    func sortTimeSeriesModelDict(with option: String) -> [(key: String, value: EquityInfoModel)] {
         /// create sort descriptor with selected sort option
         let selectedSortDescriptor = self.getUserSelectedSortDescriptor(option: option)
         /// sort timeSeriesModelDict using selectedSortDescriptor
         sortedTimeSeriesValues = timeSeriesModelDict.sorted(by: selectedSortDescriptor)
-        /// update intraday tableview
-        if let updateDelegate = self.delegate {
-            updateDelegate.updateIntradayTimeSeriesList(list: sortedTimeSeriesValues)
-        }
+        return sortedTimeSeriesValues
+    }
+    
+    func setTimeSeriesModelDict(timeSeriesModelDict: [String: EquityInfoModel]) {
+        self.timeSeriesModelDict = timeSeriesModelDict
     }
     
     // MARK: - Private methods

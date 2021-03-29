@@ -22,8 +22,6 @@ class IntradayViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
-        /// add delegate to viewModel for uodating tableview
-        viewModel.delegate = self
     }
     
     //MARK: - Internal methods
@@ -53,7 +51,10 @@ class IntradayViewController: UIViewController {
         for option in actionArray {
             let action = UIAlertAction.init(title: option.rawValueString(), style: .default) { [weak self] (action) in
                 // -- add sort action handler code
-                self?.viewModel.sortTimeSeriesModelDict(with: action.title ?? "")
+                _ = self?.viewModel.sortTimeSeriesModelDict(with: action.title ?? "")
+                DispatchQueue.main.async {
+                    self?.intradayTableView.reloadData()
+                }
             }
             alertActions.append(action)
         }
@@ -78,7 +79,9 @@ class IntradayViewController: UIViewController {
         viewModel.fetchIntradayTimeSeries(for: symbolTextField.text ?? "") { [weak self] msg in
             DispatchQueue.main.async {
                 Utility.hideActivityIndicatory((self?.parent?.view)!)
-                if !msg.isEmpty {
+                if msg.isEmpty {
+                    self?.intradayTableView.reloadData()
+                } else {
                     Utility.showAlert(self, title: "Error", message: msg)
                 }
                 
@@ -140,14 +143,5 @@ extension IntradayViewController: UITableViewDataSource {
         cell?.setData(timeSeries: currentTimeSeries)
         
         return cell!
-    }
-}
-
-/// Extension for updating IntraDayList tableview
-extension IntradayViewController: IntraDayListUpdateDelegate {
-    func updateIntradayTimeSeriesList(list: [(key: String, value: EquityInfoModel)]) {
-        DispatchQueue.main.async {
-            self.intradayTableView.reloadData()
-        }
     }
 }
