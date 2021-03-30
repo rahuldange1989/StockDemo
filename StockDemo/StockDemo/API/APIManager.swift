@@ -23,12 +23,6 @@ enum RequestResult {
 
 /// APIManager class to handle APIs
 class APIManager {
-    /// This function downloads JSON data from given Url
-    /// i.e. Get Method
-    /// - parameters:
-    ///     - urlString: string url
-    ///     - completion: completion block which returns Data from API and result of API call
-    ///
     private func getJSONFromURL(urlString: String, completion: @escaping (_ data: Data?, _ result: RequestResult?) -> Void) {
         if NetworkReachability.sharedInstance.isNetworkAvailable() {
             guard let url = URL(string: urlString) else {
@@ -104,11 +98,6 @@ extension APIManager {
         }
     }
     
-    /// This function converts downloaded data to TimeSeriesModel
-    /// - parameters:
-    ///     - json: json Data got from API call
-    ///     - completion: completion block which returns `TimeSeriesModel` from API and result of API call
-    ///
     private func createTimeSeriesModel(with json: Data, completion: @escaping (_ data: TimeSeriesModel?, _ result: RequestResult?) -> Void) {
         do {
             let decoder = JSONDecoder()
