@@ -43,6 +43,8 @@ class SettingsViewController: UIViewController {
     
     // MARK: - private methods -
     private func setupUI() {
+        /// set accessibilityIdentifier for UI testing
+        outputSizeControl.accessibilityIdentifier = "outputsize-control"
         /// add left view to apiKeyField and intervalfield
         for field in [apiKeyField, intervalField] {
             field?.leftViewMode = .always
@@ -50,6 +52,7 @@ class SettingsViewController: UIViewController {
         }
         /// create interval options actionsheet
         intervalOptionsSheet = UIAlertController(title: "", message: AppConstants.interval_option_message, preferredStyle: .actionSheet)
+        intervalOptionsSheet?.view.accessibilityIdentifier = "interval-options-sheet"
         intervalOptionsSheet?.view.tintColor = AppConstants.theme_color
         /// add different sorting options
         let actions = createIntervalActions(with: [.oneMin, .fiveMin, .fifteenMin, .fifteenMin, .thirtyMin, .sixtyMin])
