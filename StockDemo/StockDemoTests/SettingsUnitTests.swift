@@ -28,9 +28,9 @@ class SettingsUnitTests: XCTestCase {
         AppConstants.API.outputsize = "compact"
         
         viewModel?.populateSettingsValue(completion: { (apikey, interval, outputsize, _) in
-            XCTAssertEqual(apikey, "ABCDEF", "api key is not populated")
-            XCTAssertEqual(interval, "1min", "interval is not populated")
-            XCTAssertEqual(outputsize, "full", "outputsize is not populated")
+            XCTAssertEqual(apikey, "78TV77XPOXDOJC4Z", "api key is not populated")
+            XCTAssertEqual(interval, "5min", "interval is not populated")
+            XCTAssertEqual(outputsize, "compact", "outputsize is not populated")
         })
     }
     
