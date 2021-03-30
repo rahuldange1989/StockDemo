@@ -55,6 +55,14 @@
                BlueprintName = "StockDemoUITests"
                ReferencedContainer = "container:StockDemo.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "DailyUITests/testIfActivityIndicatorPresent()">
+               </Test>
+               <Test
+                  Identifier = "IntradayUITests/testIfActivityIndicatorPresent()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
