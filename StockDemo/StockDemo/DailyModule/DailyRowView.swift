@@ -11,7 +11,7 @@ class DailyRowView: UIView {
     
     init(frame: CGRect, dailyTimeRecord: EquityInfoModel, symbol: String) {
         super.init(frame: frame)
-        createDailyView(with: [symbol, dailyTimeRecord.low, dailyTimeRecord.high])
+        createDailyView(with: [symbol, dailyTimeRecord.open, dailyTimeRecord.low])
     }
     
     required init?(coder: NSCoder) {

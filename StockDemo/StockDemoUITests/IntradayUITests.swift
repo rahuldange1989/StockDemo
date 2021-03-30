@@ -41,7 +41,7 @@ class IntradayUITests: XCTestCase {
     func testIntradayTableviewPresent() {
         app?.launch()
         let intradayTableView = app?.tables["intraday-tableview"]
-        XCTAssert(intradayTableView!.exists, "Get Info button not present")
+        XCTAssert(intradayTableView!.exists, "Get intraday tableview not present")
     }
     
     func testNoDataLabelPresent() {

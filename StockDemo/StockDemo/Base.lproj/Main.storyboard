@@ -46,7 +46,7 @@
                                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZB-6n-Wdf">
                                                 <rect key="frame" x="324" y="10" width="80" height="40"/>
                                                 <color key="backgroundColor" red="0.82745098039999998" green="0.066666666669999999" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="comapre-button"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="compare-button"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Khe-as-CKs"/>
                                                     <constraint firstAttribute="height" constant="40" id="Luv-de-7G7"/>

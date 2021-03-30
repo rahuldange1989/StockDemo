@@ -32,6 +32,13 @@ class DailyViewModel {
         symbols.removeAll()
     }
     
+    func sortDailyTimeSeriesBasedOnDateDescending(dailyTimeSeries: [String: EquityInfoModel]) {
+        /// sort dailyTimeSeries based on descending date
+        self.sortedDailyTimeSeriesValues.append(dailyTimeSeries.sorted(by: { (dict0, dict1) -> Bool in
+            dict0.key > dict1.key
+        }))
+    }
+    
     func fetchDailyTimeSeries(for symbols: String, completion: @escaping (_ message: String) -> ()) {
         let symbolsWithoutSpaces = symbols.replacingOccurrences(of: " ", with: "")
         let symbolsArray = symbolsWithoutSpaces.components(separatedBy: ",")
@@ -57,10 +64,7 @@ class DailyViewModel {
                         if !timeSeriesDailyModelDict.isEmpty {
                             self?.timeSeriesModelDictArray.append(timeSeriesDailyModelDict)
                             self?.symbols.append(timeSeriesModel?.metaData?.symbol ?? "")
-                            /// sort dailyTimeSeries based on descending date
-                            self?.sortedDailyTimeSeriesValues.append(timeSeriesDailyModelDict.sorted(by: { (dict0, dict1) -> Bool in
-                                dict0.key > dict1.key
-                            }))
+                            self?.sortDailyTimeSeriesBasedOnDateDescending(dailyTimeSeries: timeSeriesDailyModelDict)
                         }
                     }
                 } else if result == .NoInternet {
