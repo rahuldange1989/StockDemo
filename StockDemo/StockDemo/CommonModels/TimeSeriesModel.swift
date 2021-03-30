@@ -39,6 +39,7 @@ struct TimeSeriesModel: Decodable {
     let timeSeries60Min: [String: EquityInfoModel]?
     let timeSeriesDaily: [String: EquityInfoModel]?
     let metaData: MetaData?
+    let note: String?
 
     enum CodingKeys: String, CodingKey {
         case timeSeries1Min = "Time Series (1min)"
@@ -48,6 +49,7 @@ struct TimeSeriesModel: Decodable {
         case timeSeries60Min = "Time Series (60min)"
         case timeSeriesDaily = "Time Series (Daily)"
         case metaData = "Meta Data"
+        case note = "Note"
     }
     
     func getTimeSeriesDict(isDailySeries: Bool = false) -> [String: EquityInfoModel] {

@@ -25,6 +25,10 @@ struct AppConstants {
     static let required_time_format = "HH:mm"
     static let theme_color = UIColor(red: 211, green: 17, blue: 69)
     
+    // -- fonts
+    static let helvetica_regular_font = UIFont(name: "HelveticaNeue-Regular", size: 15.0)
+    static let helvetica_medium_font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
+    
     // -- Constant String Messages
     static let server_error_msg = "Unable to connect to the server.\nPlease try again later."
     static let no_network_error_msg = "You are currently offline. Please connect to internet."

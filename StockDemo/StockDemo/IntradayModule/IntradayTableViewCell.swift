@@ -25,6 +25,7 @@ class IntradayTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    // MARK: - Internal methods -
     func setData(timeSeries: (key: String, value: EquityInfoModel)) {
         let infoModel = timeSeries.value
         openLabel.text = infoModel.open

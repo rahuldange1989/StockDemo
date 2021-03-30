@@ -26,6 +26,12 @@ class DailyViewModel {
         self.timeSeriesModelDictArray = timeSeriesModelDictArray
     }
     
+    func removeAllElements() {
+        timeSeriesModelDictArray.removeAll()
+        sortedDailyTimeSeriesValues.removeAll()
+        symbols.removeAll()
+    }
+    
     func fetchDailyTimeSeries(for symbols: String, completion: @escaping (_ message: String) -> ()) {
         let symbolsWithoutSpaces = symbols.replacingOccurrences(of: " ", with: "")
         let symbolsArray = symbolsWithoutSpaces.components(separatedBy: ",")
@@ -44,14 +50,18 @@ class DailyViewModel {
             let apiManager = APIManager()
             apiManager.getDailyData(for: symbol.percentageEncoding()) { [weak self] (timeSeriesModel, result) in
                 if result == .Success {
-                    let timeSeriesDailyModelDict = timeSeriesModel?.getTimeSeriesDict(isDailySeries: true) ?? [:]
-                    if !timeSeriesDailyModelDict.isEmpty {
-                        self?.timeSeriesModelDictArray.append(timeSeriesDailyModelDict)
-                        self?.symbols.append(timeSeriesModel?.metaData?.symbol ?? "")
-                        /// sort dailyTimeSeries based on descending date
-                        self?.sortedDailyTimeSeriesValues.append(timeSeriesDailyModelDict.sorted(by: { (dict0, dict1) -> Bool in
-                            dict0.key > dict1.key
-                        }))
+                    if let note = timeSeriesModel?.note {
+                        errorMsg = note
+                    } else {
+                        let timeSeriesDailyModelDict = timeSeriesModel?.getTimeSeriesDict(isDailySeries: true) ?? [:]
+                        if !timeSeriesDailyModelDict.isEmpty {
+                            self?.timeSeriesModelDictArray.append(timeSeriesDailyModelDict)
+                            self?.symbols.append(timeSeriesModel?.metaData?.symbol ?? "")
+                            /// sort dailyTimeSeries based on descending date
+                            self?.sortedDailyTimeSeriesValues.append(timeSeriesDailyModelDict.sorted(by: { (dict0, dict1) -> Bool in
+                                dict0.key > dict1.key
+                            }))
+                        }
                     }
                 } else if result == .NoInternet {
                     errorMsg = AppConstants.no_network_error_msg
@@ -64,7 +74,6 @@ class DailyViewModel {
         
         /// call completion block once all request completes
         dispatchGroup.notify(queue: .global()) {
-            print(self.timeSeriesModelDictArray)
             completion(errorMsg)
         }
     }

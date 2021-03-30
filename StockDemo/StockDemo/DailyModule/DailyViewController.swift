@@ -47,15 +47,28 @@ class DailyViewController: UIViewController {
         if symbols.isEmpty {
             return
         }
+        /// empty all arrays from view model
+        viewModel.removeAllElements()
         
         Utility.showActivityIndicatory((parent?.view)!)
         viewModel.fetchDailyTimeSeries(for: symbols) { [weak self] msg in
             DispatchQueue.main.async {
                 Utility.hideActivityIndicatory((self?.parent?.view)!)
                 if msg.isEmpty {
-                    
+                    self?.dailyTableView.reloadData()
                 } else {
                     Utility.showAlert(self, title: "", message: msg)
+                }
+                
+                /// hide or display no data label
+                if !(self?.viewModel.getSortedTimeSeriesList().first?.isEmpty ?? true) {
+                    self?.noDataLabel.isHidden = true
+                    /// scrolling tableview to top after some time as reloadData is in progress.
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self?.dailyTableView.setContentOffset(.zero, animated: true)
+                    }
+                } else {
+                    self?.noDataLabel.isHidden = false
                 }
             }
         }
@@ -86,21 +99,32 @@ extension DailyViewController: UITextFieldDelegate {
     }
 }
 
-/// Extension for UITableViewDatasource methods
-extension DailyViewController: UITableViewDataSource {
+/// Extension for UITableViewDatasource  methods
+extension DailyViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getSortedTimeSeriesList().first?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "IntradayTableViewCell") as? IntradayTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "DailyTableViewCell") as? DailyTableViewCell
         
         /// create new cell if it is nil
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "IntradayTableViewCell") as? IntradayTableViewCell
+            cell = UITableViewCell(style: .default, reuseIdentifier: "DailyTableViewCell") as? DailyTableViewCell
         }
         
+        /// get current dailyTimeSeries for different symbols
+        var compareDailySeriesArray: [(key: String, value: EquityInfoModel)] = []
+        for currentDailySeries in viewModel.getSortedTimeSeriesList() {
+            compareDailySeriesArray.append(currentDailySeries[indexPath.row])
+        }
+        cell?.setData(dailyTimeSeries: compareDailySeriesArray, symbols: viewModel.getSymbols())
+        
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat((viewModel.getSortedTimeSeriesList().count + 1) * 44)
     }
 }
 

@@ -28,9 +28,13 @@ class IntradayViewModel {
         let apiManager = APIManager()
         apiManager.getIntradayData(for: symbolWithoutSpaces.percentageEncoding()) { [weak self] (timeSeriesModel, result) in
             if result == .Success {
-                self?.timeSeriesModelDict = timeSeriesModel?.getTimeSeriesDict() ?? [:]
-                self?.sortedTimeSeriesValues = self?.sortTimeSeriesModelDict(with: SortOptions.dateDescending.rawValueString()) ?? []
-                completion("")
+                if let note = timeSeriesModel?.note {
+                    completion(note)
+                } else {
+                    self?.timeSeriesModelDict = timeSeriesModel?.getTimeSeriesDict() ?? [:]
+                    self?.sortedTimeSeriesValues = self?.sortTimeSeriesModelDict(with: SortOptions.dateDescending.rawValueString()) ?? []
+                    completion("")
+                }
             } else if result == .NoInternet {
                 completion(AppConstants.no_network_error_msg)
             } else{
