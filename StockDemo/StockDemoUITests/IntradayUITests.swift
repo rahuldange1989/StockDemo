@@ -41,7 +41,7 @@ class IntradayUITests: XCTestCase {
     func testIntradayTableviewPresent() {
         app?.launch()
         let intradayTableView = app?.tables["intraday-tableview"]
-        XCTAssert(intradayTableView!.exists, "Get Info button not present")
+        XCTAssert(intradayTableView!.exists, "Get intraday tableview not present")
     }
     
     func testNoDataLabelPresent() {
@@ -60,6 +60,19 @@ class IntradayUITests: XCTestCase {
         symbolField!.typeText("ABC")
         
         XCTAssert(infoBtn!.isEnabled, "Get Info button should be enabled")
+    }
+    
+    func testMinimumSymbolLength() {
+        app?.launch()
+        let symbolField = app?.textFields["symbol-field"]
+        symbolField!.tap()
+        symbolField!.typeText("AB")
+
+        let infoBtn = app?.buttons["info-button"]
+        infoBtn?.tap()
+
+        let alert = app?.alerts["common-alert"]
+        XCTAssert(alert!.exists, "Minimum symbol length failed.")
     }
     
     func testIfActivityIndicatorPresent() {

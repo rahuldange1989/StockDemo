@@ -32,6 +32,11 @@ class UtilityUnitTests: XCTestCase {
         XCTAssertEqual(requiredDateString, "24/03/2021", "Dates not equal for Daily")
     }
     
+    func testPercentageEncoding() {
+        let url = "param 1=19091989&param  2=param2"
+        XCTAssertEqual(url.percentageEncoding(), "param%201=19091989&param%20%202=param2", "string extension percentage encoding not working")
+    }
+    
     /// disabled networkReachability test as Travis CI workstation issue.
     func testNeworkReachability() {
         NetworkReachability.sharedInstance.initialize()

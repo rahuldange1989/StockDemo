@@ -112,3 +112,9 @@ extension UIColor {
     }
 }
 
+// MARK: - String extension -
+extension String {
+    func percentageEncoding() -> String {
+        self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+    }
+}

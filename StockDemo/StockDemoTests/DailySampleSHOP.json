@@ -1,0 +1,42 @@
+{
+    "Meta Data": {
+        "1. Information": "Daily Time Series with Splits and Dividend Events",
+        "2. Symbol": "SHOP",
+        "3. Last Refreshed": "2021-03-29",
+        "4. Output Size": "Compact",
+        "5. Time Zone": "US/Eastern"
+    },
+    "Time Series (Daily)": {
+        "2021-03-29": {
+            "1. open": "1053.6",
+            "2. high": "1075.8276",
+            "3. low": "1028.6",
+            "4. close": "1039.91",
+            "5. adjusted close": "1039.91",
+            "6. volume": "1055183",
+            "7. dividend amount": "0.0000",
+            "8. split coefficient": "1.0"
+        },
+        "2021-03-26": {
+            "1. open": "1052.6",
+            "2. high": "1084.98",
+            "3. low": "1005.14",
+            "4. close": "1065.21",
+            "5. adjusted close": "1065.21",
+            "6. volume": "2840193",
+            "7. dividend amount": "0.0000",
+            "8. split coefficient": "1.0"
+        },
+        "2021-03-25": {
+            "1. open": "1090.08",
+            "2. high": "1103.99",
+            "3. low": "1051.2501",
+            "4. close": "1061.68",
+            "5. adjusted close": "1061.68",
+            "6. volume": "1768208",
+            "7. dividend amount": "0.0000",
+            "8. split coefficient": "1.0"
+        }
+    }
+}
+
